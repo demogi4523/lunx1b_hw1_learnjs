@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вызвать alert</title>
+</head>
+<body>
+  <a href="https://learn.javascript.ru/comparison#operatory-sravneniya">Задача #1</a>
+
+  <script>
+    "use strict";
+    let res;
+
+    res = 5 > 4;
+    console.log("5 > 4: " + res.toString());
+    res = "ананас" > "яблоко";
+    console.log('"ананас" > "яблоко": ' + res.toString());
+    res = "2" > "12";
+    console.log('"2" > "12": ' + res.toString());
+    res = undefined == null;
+    console.log("undefined == null: " + res.toString());
+    res = undefined === null;
+    console.log("undefined === null: " + res.toString());
+    res = null == "\n0\n";
+    console.log('null == "\n0\n" :' + res.toString());
+    res = null === +"\n0\n";
+    console.log('null === +"\n0\n" :' + res.toString());
+  </script>
+
+<h2>Каким будет результат этих выражений?</h2>
+
+<h3>Код:</h3>
+
+  <code>
+    <p>// 5 больше 4 - простое численное сранение</p>
+    <p>5 > 4 // true</p>
+    <p>// "ананас" меньше "яблоко" - сравнение строк(по «лексикографическому» порядку)</p>
+    <p>"ананас" > "яблоко" // false</p>
+    <p>// "2" больше "12" - сравнение строк(по «лексикографическому» порядку)</p>
+    <p>"2" > "12" // true</p>
+    <p>// Особое сравнение null и undefined - будет true так как используется нестрогое сравнение</p>
+    <p>undefined == null // true</p>
+    <p>// Особое сравнение null и undefined - будет false так как используется строгое сравнение</p>
+    <p>undefined === null // false</p>
+    <p>// null сранивается со строкой нестрогим сравнением, </p>
+    <p>// null преобразуется к числу 0, а строка к 1 </p>
+    <p>// поэтому в итогу получится false</p>
+    <p>null == "\n0\n" // false</p>
+    <p>// при строгом сравнении с null всегда возвращается false</p>
+    <p>null === +"\n0\n" // false</p>
+  </code>
+
+  <p>P.S. смотри <a href="https://learn.javascript.ru/devtools">консоль разработчика</a></p>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "homework1",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "learnjs": "node --experimental-modules learnjs-tasks/index.js",
+    "first": "node --experimental-modules first/index.js",
+    "second": "node --experimental-modules second/index.js",
+    "third": "node --experimental-modules third/index.js"
+  },
+  "author": "demogi4523 <demogi4523@yandex.ru>",
+  "license": "MIT",
+  "dependencies": {
+    "open": "^8.4.2"
+  }
+}
