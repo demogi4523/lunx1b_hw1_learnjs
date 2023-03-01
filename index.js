@@ -1,7 +1,7 @@
-import first from "./first/index.js";
-import fourth from "./fourth/index.js";
-import fifth from "./fifth/index.js";
-import ninth from "./ninth/index.js";
+import first from "./learnjs-tasks/first/index.js";
+import fourth from "./learnjs-tasks/fourth/index.js";
+import fifth from "./learnjs-tasks/fifth/index.js";
+import ninth from "./learnjs-tasks/ninth/index.js";
 
 const args = [];
 process.argv.forEach(function (val, index, array) {
