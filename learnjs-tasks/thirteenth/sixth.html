@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Циклы While и For</title>
+</head>
+<body>
+  <a href="https://learn.javascript.ru/while-for#povtoryat-tsikl-poka-vvod-neveren">Задача #6</a>
+
+  <script>
+    "use strict";
+
+    let n = 1;
+    while (n <= 100) {
+      n = prompt("Введите число болшее 100");
+      if (n === null) {
+        break;
+      }
+      n = parseInt(n);
+    }
+  </script>
+
+<h2>Задача</h2>
+
+<p>Напишите цикл, который предлагает prompt ввести число, большее 100. Если посетитель ввёл другое число – попросить ввести ещё раз, и так далее.
+
+  Цикл должен спрашивать число пока либо посетитель не введёт число, большее 100, либо не нажмёт кнопку Отмена (ESC).
+
+  Предполагается, что посетитель вводит только числа. Предусматривать обработку нечисловых строк в этой задаче необязательно.</p>
+
+<h3>Решение</h3>
+
+  <code>
+    <p>let n = 1;</p>
+    <p>while (n <= 100) {</p>
+      <p>n = prompt("Введите число болшее 100");</p>
+      <p>if (n === null) {</p>
+        <p>break;</p>
+      <p>}</p>
+      <p>n = parseInt(n);</p>
+    <p>}</p>
+  </code>
+
+</body>
+</html>

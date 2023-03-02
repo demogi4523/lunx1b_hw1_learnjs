@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Циклы While и For</title>
+</head>
+<body>
+  <a href="https://learn.javascript.ru/while-for#poslednee-znachenie-tsikla">Задача #1</a>
+
+  <script>
+    "use strict";
+    let i = 3;
+
+    while (i) {
+      console.log(i--);
+    }
+  </script>
+
+<h2>Какое последнее значение выведет этот код? Почему?</h2>
+
+<h3>Код:</h3>
+
+  <code>
+    <p>i = 3;</p>
+
+    <p>while (i) {</p>
+      <p>alert(i--); // остановится на единице, т.к. 0 преобразуется в false</p>
+    <p>}</p>
+  </code>
+  <p>P.S. смотри <a href="https://learn.javascript.ru/devtools">консоль разработчика</a></p>
+</body>
+</html>

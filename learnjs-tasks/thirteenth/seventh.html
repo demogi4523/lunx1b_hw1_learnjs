@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Циклы While и For</title>
+</head>
+<body>
+  <a href="https://learn.javascript.ru/while-for#vyvesti-prostye-chisla">Задача #7</a>
+
+  <script src="seventh.js"></script>
+
+<h2>Вывести простые числа</h2>
+
+<p>Натуральное число, большее 1, называется простым, если оно ни на что не делится, кроме себя и 1.
+
+  Другими словами, n > 1 – простое, если при его делении на любое число кроме 1 и n есть остаток.
+
+  Например, 5 это простое число, оно не может быть разделено без остатка на 2, 3 и 4.
+
+  Напишите код, который выводит все простые числа из интервала от 2 до n.
+
+  Для n = 10 результат должен быть 2,3,5,7.
+
+  P.S. Код также должен легко модифицироваться для любых других интервалов.
+  </p>
+
+<h3>Решение</h3>
+
+  <code>
+    <p>"use strict";</p>
+
+    <p>const cacheForSimpleNumbers = new Set();</p>
+
+    <p>function isSimple(n) {</p>
+      <p>if (typeof(n) !== "number") {</p>
+        <p>throw new Error("n must be number!!!");</p>
+      <p>}</p>
+
+      <p>if (n < 2) {</p>
+        <p>return false;</p>
+      <p>}</p>
+
+      <p>if (cacheForSimpleNumbers.has(n)) {</p>
+        <p>return true;</p>
+      <p>}</p>
+
+      <p>let num = 2;</p>
+      <p>while (num * num <= n) {</p>
+        <p>if (n % num == 0) {</p>
+          <p>return false;</p>
+        <p>}</p>
+        <p>num += 1;</p>
+      <p>}</p>
+      <p>cacheForSimpleNumbers.add(n);</p>
+      <p>return true;</p>
+    <p>}</p>
+
+    <p>function getSimpleOnInterval(start, finish) {</p>
+      <p>const res = [];</p>
+      <p>for (let currentValue = start; currentValue <= finish; currentValue++) {</p>
+        <p>if (isSimple(currentValue)) {</p>
+          <p>res.push(currentValue)</p>
+        <p>}</p>
+      <p>}</p>
+      <p>return res;</p>
+    <p>}</p>
+
+
+  </code>
+
+</body>
+</html>

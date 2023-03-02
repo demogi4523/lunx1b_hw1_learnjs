@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Циклы While и For</title>
+</head>
+<body>
+  <a href="https://learn.javascript.ru/while-for#kakie-znacheniya-vyvedet-tsikl-while">Задача #2</a>
+
+  <script>
+    "use strict";
+
+    let i = 0;
+    while (++i < 5) console.log(i);
+
+    i = 0;
+    while (i++ < 5) console.log(i);
+  </script>
+
+<h2>Для каждого цикла запишите, какие значения он выведет. Потом сравните с ответом.<br>
+
+  Оба цикла выводят alert с одинаковыми значениями или нет?</h2>
+
+<h3>Префиксный вариант ++i:</h3>
+
+  <code>
+    <p>let i = 0;</p>
+    <p>// Выведет числа от 1 до 4, так как сначала увеличивает значение, а затем происходит сравнение</p>
+    <p>while (++i < 5) alert( i );</p>
+  </code>
+
+  <hr>
+
+<h3>Постфиксный вариант i++:</h3>
+
+  <code>
+    <p>let i = 0;</p>
+    <p>// Выведет числа от 1 до 5, так как увеличение происходит после сравнения</p>
+    <p>while (i++ < 5) alert( i );</p>
+  </code>
+
+
+  <p>P.S. смотри <a href="https://learn.javascript.ru/devtools">консоль разработчика</a></p>
+</body>
+</html>

@@ -2,10 +2,10 @@ import first from "./learnjs-tasks/first/index.js";
 import fourth from "./learnjs-tasks/fourth/index.js";
 import fifth from "./learnjs-tasks/fifth/index.js";
 import ninth from "./learnjs-tasks/ninth/index.js";
+import thirteenth from "./learnjs-tasks/thirteenth/index.js";
 
 const args = [];
-process.argv.forEach(function (val, index, array) {
-  // console.log(index + ': ' + val);
+process.argv.forEach(function (val) {
   args.push(val);
 });
 
@@ -38,4 +38,15 @@ if (args[2] == 8) {
 if (args[2] == 9) {
   ninth(args[3]);
 }
-
+if (args[2] == 10) {
+  console.log("Не задано!!!");
+}
+if (args[2] == 11) {
+  console.log("Не задано!!!");
+}
+if (args[2] == 12) {
+  console.log("Не задано!!!");
+}
+if (args[2] == 13) {
+  thirteenth(args[3]);
+}

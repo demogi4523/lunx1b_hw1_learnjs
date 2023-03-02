@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Циклы While и For</title>
+</head>
+<body>
+  <a href="https://learn.javascript.ru/while-for#zamenite-for-na-while">Задача #5</a>
+
+  <script>
+    "use strict";
+
+    for (let i = 0; i < 3; i++) {
+      console.log( `number ${i}!` );
+    }
+
+    let i = 0;
+    while (i < 3) {
+      console.log( `number ${i}!` );
+      i += 1;
+    }
+  </script>
+
+<h2>Замените for на while</h2>
+
+<p>Перепишите код, заменив цикл for на while, без изменения поведения цикла.</p>
+
+  <code>
+    <p>for (let i = 0; i < 3; i++) {</p>
+      <p>alert( `number ${i}!` );</p>
+    <p>}</p>
+  </code>
+
+<hr>
+
+<h3>Решение</h3>
+
+  <code>
+    <p>let i = 0;</p>
+    <p>while (i < 3) {</p>
+      <p>alert( `number ${i}!` );</p>
+      <p>i += 1;</p>
+    <p>}</p>
+  </code>
+
+  <p>P.S. смотри <a href="https://learn.javascript.ru/devtools">консоль разработчика</a></p>
+</body>
+</html>
