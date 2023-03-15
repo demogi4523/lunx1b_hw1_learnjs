@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вывод односвязного списка</title>
+</head>
+<body>
+  <a href="https://learn.javascript.ru/recursion#vyvod-odnosvyaznogo-spiska">Задача #4</a>
+
+  <script>
+    "use strict";
+
+    let list = {
+      value: 1,
+      next: {
+        value: 2,
+        next: {
+          value: 3,
+          next: {
+            value: 4,
+            next: null,
+          }
+        }
+      }
+    };
+
+    const printListOverCycle = (singleLinkedList) => {
+      let cur = singleLinkedList;
+      const res = [];
+
+      while (cur !== null) {
+        res.push(cur.value);
+        cur = cur.next;
+      }
+
+      return res.join(', ');
+    };
+
+    const printListOverRecursion = (singleLinkedList, prev = []) => {
+      if (singleLinkedList === null) {
+        return prev.join(', ');
+      }
+
+      prev.push(singleLinkedList.value);
+      return printListOverRecursion(singleLinkedList.next, prev);
+    };
+
+    console.log(`Односвязный список через цикл:\n${printListOverCycle(list)}`);
+    console.log(`Односвязный список через рекурсию:\n${printListOverRecursion(list)}`);
+  </script>
+
+<h2>Вывод односвязного списка</h2>
+
+<p>
+  Допустим, у нас есть односвязный список (как описано в главе <a href="https://learn.javascript.ru/recursion">Рекурсия и стек</a>):
+</p>
+
+<code>
+  <p>let list = {</p>
+    <p>value: 1,</p>
+    <p>next: {</p>
+      <p>value: 2,</p>
+      <p>next: {</p>
+        <p>value: 3,</p>
+        <p>next: {</p>
+          <p>value: 4,</p>
+          <p>next: null</p>
+        <p>}</p>
+      <p>}</p>
+    <p>}</p>
+  <p>};</p>
+</code>
+
+<p>
+  Напишите функцию printList(list), которая выводит элементы списка по одному.
+</p>
+
+<p>
+  Сделайте два варианта решения: используя цикл и через рекурсию.
+</p>
+
+<p>
+  Как лучше: с рекурсией или без?
+</p>
+
+  <h2>Решение</h2>
+
+  <h3>Вариант решения через цикл:</h3>
+  <code>
+    <p>const printList = (singleLinkedList) => {</p>
+      <p>let cur = singleLinkedList;</p>
+      <p>const res = [];</p>
+      <p></p>
+      <p>while (cur !== null) {</p>
+        <p>res.push(cur.value);</p>
+        <p>cur = cur.next;</p>
+      <p>}</p>
+      <p></p>
+      <p>return res.join(', ');</p>
+    <p>};</p>
+  </code>
+
+  <h3>Вариант решения через рекурсию:</h3>
+  <code>
+    <p>const printList = (singleLinkedList, prev = []) => {</p>
+      <p>if (singleLinkedList === null) {</p>
+        <p>return prev.join(', ');</p>
+      <p>}</p>
+      <p></p>
+      <p>prev.push(singleLinkedList.value);</p>
+      <p>return printList(singleLinkedList.next, prev);</p>
+    <p>};</p>
+  </code>
+
+  <p>Результат вычислений можно увидеть в консоли разработчика.</p>
+
+  <p>P.S. смотри <a href="https://learn.javascript.ru/devtools">консоль разработчика</a></p>
+
+</body>
+</html>

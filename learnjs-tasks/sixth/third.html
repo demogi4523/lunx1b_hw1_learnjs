@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Числа Фибоначчи</title>
+</head>
+<body>
+  <a href="https://learn.javascript.ru/recursion#chisla-fibonachchi">Задача #3</a>
+
+  <script>
+    "use strict";
+
+    const cache = {
+      1: 1,
+      2: 1,
+    };
+
+    const fib = (n) => {
+      if (isNaN(n) || typeof n !== "number") {
+        throw new Error("n must be integer more or equal 1!!!");
+      }
+      if (n < 0) {
+        throw new Error("n must be integer more or equal 1!!!");
+      }
+      if (cache.hasOwnProperty(n)) {
+        return cache[n];
+      }
+      const res = fib(n - 1) + fib(n - 2);
+      cache[n] = res;
+      return res;
+    }
+
+    console.log(`fib(77)) = ${fib(77)}`);
+
+  </script>
+
+<p>
+  Последовательность <a href="https://ru.wikipedia.org/wiki/%D0%A7%D0%B8%D1%81%D0%BB%D0%B0_%D0%A4%D0%B8%D0%B1%D0%BE%D0%BD%D0%B0%D1%87%D1%87%D0%B8">чисел Фибоначчи</a> определяется формулой Fn = Fn-1 + Fn-2. То есть, следующее число получается как сумма двух предыдущих.
+</p>
+
+<p>
+  Первые два числа равны 1, затем 2 = (1 + 1), затем 3 = (1 + 2), 5 = (2 + 3) и так далее: 1, 1, 2, 3, 5, 8, 13, 21....
+</p>
+
+<p>
+  Числа Фибоначчи тесно связаны с <a href="https://ru.wikipedia.org/wiki/%D0%97%D0%BE%D0%BB%D0%BE%D1%82%D0%BE%D0%B5_%D1%81%D0%B5%D1%87%D0%B5%D0%BD%D0%B8%D0%B5">золотым сечением</a> и множеством природных явлений вокруг нас.
+</p>
+
+<p>
+  Напишите функцию fib(n) которая возвращает n-е число Фибоначчи.
+</p>
+
+<p>
+  Пример работы:
+</p>
+
+<code>
+  <p>function fib(n) { /* ваш код */ }</p>
+  <p></p>
+  <p>alert(fib(3)); // 2</p>
+  <p>alert(fib(7)); // 13</p>
+  <p>alert(fib(77)); // 5527939700884757</p>
+</code>
+
+
+<p>
+  P.S. Все запуски функций из примера выше должны работать быстро. Вызов fib(77) должен занимать не более доли секунды.
+</p>
+
+  <h2>Решение</h2>
+
+  <code>
+    <p>const cache = {</p>
+      <p>1: 1,</p>
+      <p>2: 1,</p>
+    <p>};</p>
+
+    <p>const fib = (n) => {</p>
+      <p>if (isNaN(n) || typeof n !== "number") {</p>
+        <p>throw new Error("n must be integer more or equal 1!!!");</p>
+      <p>}</p>
+      <p>if (n < 0) {</p>
+        <p>throw new Error("n must be integer more or equal 1!!!");</p>
+      <p>}</p>
+      <p>if (cache.hasOwnProperty(n)) {</p>
+        <p>return cache[n];</p>
+      <p>}</p>
+      <p>const res = fib(n - 1) + fib(n - 2);</p>
+      <p>cache[n] = res;</p>
+      <p>return res;</p>
+    <p>}</p>
+  </code>
+
+  <p>Результат вычислений можно увидеть в консоли разработчика.</p>
+
+  <p>P.S. смотри <a href="https://learn.javascript.ru/devtools">консоль разработчика</a></p>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вывод односвязного списка в обратном порядке</title>
+</head>
+<body>
+  <a href="https://learn.javascript.ru/recursion#vyvod-odnosvyaznogo-spiska-v-obratnom-poryadke">Задача #5</a>
+
+  <script>
+    "use strict";
+
+    let list = {
+      value: 1,
+      next: {
+        value: 2,
+        next: {
+          value: 3,
+          next: {
+            value: 4,
+            next: null,
+          }
+        }
+      }
+    };
+
+    const printReversedListOverCycle = (singleLinkedList) => {
+      let cur = singleLinkedList;
+      const res = [];
+
+      while (cur !== null) {
+        res.push(cur.value);
+        cur = cur.next;
+      }
+
+      return res.reverse().join(', ');
+    };
+
+    const printReversedListOverRecursion = (singleLinkedList, prev = []) => {
+      if (singleLinkedList === null) {
+        return prev.reverse().join(', ');
+      }
+
+      prev.push(singleLinkedList.value);
+      return printReversedListOverRecursion(singleLinkedList.next, prev);
+    };
+
+    console.log(`Односвязный список в обратном порядке через цикл:\n${printReversedListOverCycle(list)}`);
+    console.log(`Односвязный список в обратном порядке через рекурсию:\n${printReversedListOverRecursion(list)}`);
+
+  </script>
+
+<h2>Вывод односвязного списка в обратном порядке</h2>
+
+<p>
+  Выведите односвязный список из предыдущего задания Вывод односвязного списка в обратном порядке.
+</p>
+
+<p>
+  Сделайте два решения: с использованием цикла и через рекурсию.
+</p>
+
+
+  <h2>Решение</h2>
+
+  <h3>Вариант решения через цикл:</h3>
+  <code>
+    <p>const printReversedList = (singleLinkedList) => {</p>
+      <p>let cur = singleLinkedList;</p>
+      <p>const res = [];</p>
+      <p></p>
+      <p>while (cur !== null) {</p>
+        <p>res.push(cur.value);</p>
+        <p>cur = cur.next;</p>
+      <p>}</p>
+      <p></p>
+      <p>return res.reverse().join(', ');</p>
+    <p>};</p>
+  </code>
+
+  <h3>Вариант решения через рекурсию:</h3>
+  <code>
+    <p>const printReversedList = (singleLinkedList, prev = []) => {</p>
+      <p>if (singleLinkedList === null) {</p>
+        <p>return prev.reverse().join(', ');</p>
+      <p>}</p>
+      <p></p>
+      <p>prev.push(singleLinkedList.value);</p>
+      <p>return printReversedList(singleLinkedList.next, prev);</p>
+    <p>};</p>
+  </code>
+
+  <p>Результат вычислений можно увидеть в консоли разработчика.</p>
+
+  <p>P.S. смотри <a href="https://learn.javascript.ru/devtools">консоль разработчика</a></p>
+
+</body>
+</html>

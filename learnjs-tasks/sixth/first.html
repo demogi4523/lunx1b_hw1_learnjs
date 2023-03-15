@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вычислить сумму чисел до данного</title>
+</head>
+<body>
+  <a href="https://learn.javascript.ru/recursion#vychislit-summu-chisel-do-dannogo">Задача #1</a>
+
+  <script>
+    "use strict";
+    const cycleSumTo = (n) => {
+      if (isNaN(n) || typeof n !== "number") {
+        throw new Error("n must be integer more or equal 1!!!");
+      }
+      if (n < 0) {
+        throw new Error("n must be integer more or equal 1!!!");
+      }
+      let res = 0;
+      for (let cur = res + 1; cur <= n; cur += 1) {
+        res += cur;
+      }
+      return res;
+    };
+    console.log(`sumTo(100) через цикл равно:\n${cycleSumTo(100)}`);
+
+    const recursionSumTo = (n) => {
+      if (isNaN(n) || typeof n !== "number") {
+        throw new Error("n must be integer more or equal 1!!!");
+      }
+      if (n < 0) {
+        throw new Error("n must be integer more or equal 1!!!");
+      }
+      if (n == 0) {
+        return 0;
+      }
+      return n + recursionSumTo(n - 1);
+    };
+    console.log(`sumTo(100) через рекурсию равно:\n${recursionSumTo(100)}`);
+
+    const arithmeticProgressionSumTo = (n) => {
+      if (isNaN(n) || typeof n !== "number") {
+        throw new Error("n must be integer more or equal 1!!!");
+      }
+      if (n < 0) {
+        throw new Error("n must be integer more or equal 1!!!");
+      }
+      return parseInt(n * (n + 1) / 2);
+    }
+    console.log(`sumTo(100) через арифметическую прогрессию равно:\n${arithmeticProgressionSumTo(100)}`);
+  </script>
+
+<h2>Напишите функцию sumTo(n), которая вычисляет сумму чисел 1 + 2 + ... + n.</h2>
+
+<h3>Например:</h3>
+
+  <code>
+    <p>sumTo(1) = 1</p>
+    <p>sumTo(2) = 2 + 1 = 3</p>
+    <p>sumTo(3) = 3 + 2 + 1 = 6</p>
+    <p>sumTo(4) = 4 + 3 + 2 + 1 = 10</p>
+    <p>...</p>
+    <p>sumTo(100) = 100 + 99 + ... + 2 + 1 = 5050</p>
+  </code>
+
+  Сделайте три варианта решения:
+    <ol>
+      <li>
+        С использованием цикла.
+      </li>
+      <li>
+        Через рекурсию, т.к. sumTo(n) = n + sumTo(n-1) for n > 1.
+      </li>
+      <li>
+        С использованием формулы арифметической прогрессии.
+      </li>
+    </ol>
+
+Пример работы вашей функции:
+
+  <code>
+    <p>function sumTo(n) { /*... ваш код ... */ }</p>
+
+    <p>alert( sumTo(100) ); // 5050</p>
+  </code>
+
+<p>
+  P.S. Какой вариант решения самый быстрый? Самый медленный? Почему?
+</p>
+
+<p>
+  P.P.S. Можно ли при помощи рекурсии посчитать sumTo(100000)?
+</p>
+
+  <h2>Решение</h2>
+
+  <h3>sumTo через цикл</h3>
+  <code>
+    <p>const sumTo = (n) => {</p>
+      <p>if (isNaN(n) || typeof n !== "number") {</p>
+        <p>throw new Error("n must be integer more or equal 1!!!");</p>
+      <p>}</p>
+      <p>if (n < 0) {</p>
+        <p>throw new Error("n must be integer more or equal 1!!!");</p>
+      <p>}</p>
+      <p>let res = 0;</p>
+      <p>for (let cur = res + 1; cur <= n; cur += 1) {</p>
+        <p>res += cur;</p>
+      <p>}</p>
+      <p>return res;</p>
+    <p>};</p>
+  </code>
+
+  <h3>sumTo через рекурсию</h3>
+  <code>
+    <p>const sumTo = (n) => {</p>
+      <p>if (isNaN(n) || typeof n !== "number") {</p>
+        <p>throw new Error("n must be integer more or equal 1!!!");</p>
+      <p>}</p>
+      <p>if (n < 0) {</p>
+        <p>throw new Error("n must be integer more or equal 1!!!");</p>
+      <p>}</p>
+      <p>if (n == 0) {</p>
+        <p>return 0;</p>
+      <p>}</p>
+      <p>return n + sumTo(n - 1);</p>
+    <p>};</p>
+  </code>
+
+  <h3>sumTo через арифметическую прогрессию</h3>
+  <code>
+    <p>const sumTo = (n) => {</p>
+      <p>if (isNaN(n) || typeof n !== "number") {</p>
+        <p>throw new Error("n must be integer more or equal 1!!!");</p>
+      <p>}</p>
+      <p>if (n < 0) {</p>
+        <p>throw new Error("n must be integer more or equal 1!!!");</p>
+      <p>}</p>
+      <p>return parseInt(n * (n + 1) / 2);</p>
+    <p>}</p>
+  </code>
+
+
+  <hr>
+
+  <p>Самый быстрый вариант вычислений через арифметическую прогрессию, а самый медленный через рекурсию. В первом случае меньше всего операций, а в последним помимо количество операций необходимо также хранить контекст.</p>
+
+  <hr>
+
+  <p>Вычислить при помощи рекурсии sumTo(100000) нельзя:</p>
+
+  <blockquote>
+    Максимальная глубина рекурсии ограничена движком JavaScript. Точно можно рассчитывать на 10000 вложенных вызовов, некоторые интерпретаторы допускают и больше, но для большинства из них 100000 вызовов – за пределами возможностей. Существуют автоматические оптимизации, помогающие избежать переполнения стека вызовов («оптимизация хвостовой рекурсии»), но они ещё не поддерживаются везде и работают только для простых случаев.
+  </blockquote>
+  <cite>https://learn.javascript.ru/recursion</cite>
+
+  <!-- <p>P.S. смотри <a href="https://learn.javascript.ru/devtools">консоль разработчика</a></p> -->
+</body>
+</html>

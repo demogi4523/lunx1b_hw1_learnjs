@@ -1,6 +1,7 @@
 import first from "./learnjs-tasks/first/index.js";
 import fourth from "./learnjs-tasks/fourth/index.js";
 import fifth from "./learnjs-tasks/fifth/index.js";
+import sixth from "./learnjs-tasks/sixth/index.js";
 import ninth from "./learnjs-tasks/ninth/index.js";
 import thirteenth from "./learnjs-tasks/thirteenth/index.js";
 
@@ -27,7 +28,7 @@ if (args[2] == 5) {
   fifth(args[3]);
 }
 if (args[2] == 6) {
-  console.log("Не задано!!!");
+  sixth(args[3]);
 }
 if (args[2] == 7) {
   console.log("Не задано!!!");
