@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jasmine",
     "task": "node --experimental-modules index.js"
   },
   "repository": {
@@ -20,5 +20,9 @@
   "homepage": "https://github.com/demogi4523/lunx1b#readme",
   "dependencies": {
     "open": "^8.4.2"
+  },
+  "devDependencies": {
+    "bluebird": "^3.7.2",
+    "jasmine": "^4.5.0"
   }
 }
