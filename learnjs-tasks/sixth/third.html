@@ -7,193 +7,348 @@
   <title>Числа Фибоначчи</title>
 </head>
 <body>
-  1
+  <script src="./third.js"></script>
 
-  Независимы ли счётчики?
-важность: 5
+  <h1><a href="https://learn.javascript.ru/closure">Замыкание</a></h1>
 
-Здесь мы делаем два счётчика: counter и counter2, используя одну и ту же функцию makeCounter.
+1
 
-Они независимы? Что покажет второй счётчик? 0,1 или 2,3 или что-то ещё?
+  <h2><a href="https://learn.javascript.ru/closure#nezavisimy-li-schyotchiki">Независимы ли счётчики?</a></h2>
+  <h3>Важность: 5</h3>
+  <h3>Условие</h3>
 
-function makeCounter() {
-  let count = 0;
+  <p>
+    Здесь мы делаем два счётчика: counter и counter2, используя одну и ту же функцию makeCounter.
+  </p>
 
-  return function() {
-    return count++;
-  };
-}
+  <p>
+    Они независимы? Что покажет второй счётчик? 0,1 или 2,3 или что-то ещё?
+  </p>
 
-let counter = makeCounter();
-let counter2 = makeCounter();
+<code>
+  <p>function makeCounter() {</p>
+    <p>let count = 0;</p>
+    <p></p>
+    <p>return function() {</p>
+      <p>return count++;</p>
+    <p>};</p>
+  <p>}</p>
+  <p></p>
+  <p>let counter = makeCounter();</p>
+  <p>let counter2 = makeCounter();</p>
+  <p></p>
+  <p>alert(counter()); // 0</p>
+  <p>alert(counter()); // 1</p>
+  <p></p>
+  <p>alert(counter2()); // ?</p>
+  <p>alert(counter2()); // ?</p>
+</code>
 
-alert( counter() ); // 0
-alert( counter() ); // 1
+<h3>Решение</h3>
 
-alert( counter2() ); // ?
-alert( counter2() ); // ?
+<p>
+ Счетчики независимы, так как срабатывает механизм замыкания.
+</p>
 
 <hr>
 2
 
-Объект счётчика
-важность: 5
+<h2><a href="https://learn.javascript.ru/closure#obekt-schyotchika">Объект счётчика</a></h2>
+<h3>Важность: 5</h3>
 
-Здесь объект счётчика создан с помощью функции-конструктора.
+<p>
+  Здесь объект счётчика создан с помощью функции-конструктора.
+</p>
 
-Будет ли он работать? Что покажет?
+<p>
+  Будет ли он работать? Что покажет?
+</p>
 
-function Counter() {
-  let count = 0;
+<code>
+  <p>function Counter() {</p>
+    <p>let count = 0;</p>
+    <p></p>
+    <p>this.up = function() {</p>
+      <p>return ++count;</p>
+    <p>};</p>
+    <p>this.down = function() {</p>
+      <p>return --count;</p>
+    <p>};</p>
+  <p>}</p>
+  <p></p>
+  <p>let counter = new Counter();</p>
+  <p></p>
+  <p>alert( counter.up() ); // ?</p>
+  <p>alert( counter.up() ); // ?</p>
+  <p>alert( counter.down() ); // ?</p>
+</code>
 
-  this.up = function() {
-    return ++count;
-  };
-  this.down = function() {
-    return --count;
-  };
-}
+<h3>Решение</h3>
 
-let counter = new Counter();
-
-alert( counter.up() ); // ?
-alert( counter.up() ); // ?
-alert( counter.down() ); // ?
-
+<p>
+  Счетчик будет работать нормально, также как и в предыдущей задаче срабатывает механизм замыкания.
+</p>
 
 <hr>
 
 3
 
-Функция в if
+<h2><a href="https://learn.javascript.ru/closure#funktsiya-v-if">Функция в if</a></h2>
 
-Посмотрите на код. Какой будет результат у вызова на последней строке?
+<h3>Посмотрите на код. Какой будет результат у вызова на последней строке?</h3>
 
-let phrase = "Hello";
+<code>
+  <p>let phrase = "Hello";</p>
+  <p></p>
+  <p>if (true) {</p>
+    <p>let user = "John";</p>
+    <p></p>
+    <p>function sayHi() {</p>
+      <p>alert(`${phrase}, ${user}`);</p>
+    <p>}</p>
+  <p>}</p>
+  <p></p>
+  <p>sayHi();</p>
+</code>
 
-if (true) {
-  let user = "John";
+<h3>Решение</h3>
 
-  function sayHi() {
-    alert(`${phrase}, ${user}`);
-  }
-}
+<p>
+  Движок JavaScript выдаст ошибку RefernceError, так как при парсинге до выполнения кода происходит определение переменных и <a href="https://learn.javascript.ru/function-declaration-expression">function declaration</a>.
+</p>
 
-sayHi();
+<p>
+  Проблему можно решить объявив в начале переменную sayHi, а в блоке if инициализировав ее с помощью <a href="https://learn.javascript.ru/function-expressions">function expression</a>
+</p>
 
 <hr>
 
 4
 
-Сумма с помощью замыканий
-важность: 4
+<h2><a href="">Сумма с помощью замыканий</a></h2>
 
-Напишите функцию sum, которая работает таким образом: sum(a)(b) = a+b.
+<h3>Важность: 4</h3>
 
-Да, именно таким образом, используя двойные круглые скобки (не опечатка).
+<p>
+  Напишите функцию sum, которая работает таким образом: sum(a)(b) = a+b.
+</p>
 
-Например:
+<p>
+  Да, именно таким образом, используя двойные круглые скобки (не опечатка).
+</p>
 
-sum(1)(2) = 3
-sum(5)(-1) = 4
+<p>
+  Например:
+</p>
+
+<code>
+  <p>sum(1)(2) = 3</p>
+  <p>sum(5)(-1) = 4</p>
+</code>
+
+<h3>Решение</h3>
+
+<code>
+  <p>function sum(n) {</p>
+    <p>let cnt = n;</p>
+    <p></p>
+    <p>sum.valueOf = () => cnt;</p>
+    <p></p>
+    <p>return (n) => {</p>
+      <p>cnt += n;</p>
+      <p>return cnt;</p>
+    <p>}</p>
+  <p>}</p>
+  <p></p>
+  <p>console.log(`sum(1)(2) = ${sum(1)(2)}`);</p>
+  <p>console.log(`sum(5)(-1) = ${sum(5)(-1)}`);</p>
+</code>
+
+<p>
+  Чтобы функцию sum можно было вызывать по цепочке нужно что она возвращала функцию.
+</p>
+
+<p>Для того чтобы при console.log или alert выводилось значение cnt необходимо реализовать у функции sum метод valueOf.</p>
 
 <hr>
 
 5
 
-Фильтрация с помощью функции
-важность: 5
+<h2><a href="https://learn.javascript.ru/closure#filtratsiya-s-pomoschyu-funktsii">Фильтрация с помощью функции</a></h2>
 
-У нас есть встроенный метод arr.filter(f) для массивов. Он фильтрует все элементы с помощью функции f. Если она возвращает true, то элемент добавится в возвращаемый массив.
+<h3>Важность: 5</h3>
 
-Сделайте набор «готовых к употреблению» фильтров:
+<p>
+  У нас есть встроенный метод arr.filter(f) для массивов. Он фильтрует все элементы с помощью функции f. Если она возвращает true, то элемент добавится в возвращаемый массив.
+</p>
 
-    inBetween(a, b) – между a и b (включительно).
-    inArray([...]) – находится в данном массиве.
+<p>
+  Сделайте набор «готовых к употреблению» фильтров:
+</p>
+  <ul>
+    <li><code>inBetween(a, b)</code> – между <code>a</code> и <code>b</code> (включительно).</li>
+    <li><code>inArray([...])</code> – находится в данном массиве.</li>
+  </ul>
 
-Они должны использоваться таким образом:
+<p>
+  Они должны использоваться таким образом:
+</p>
 
-    arr.filter(inBetween(3,6)) – выбирает только значения между 3 и 6 (включительно).
-    arr.filter(inArray([1,2,3])) – выбирает только элементы, совпадающие с одним из элементов массива
+  <ul>
+    <li><code>arr.filter(inBetween(3,6))</code> – выбирает только значения между 3 и 6 (включительно).</li>
+    <li><code>arr.filter(inArray([1,2,3]))</code> – выбирает только элементы, совпадающие с одним из элементов массива</li>
+  </ul>
 
-Например:
+<p>
+  Например:
+</p>
 
+<code>
 /* .. ваш код для inBetween и inArray */
-let arr = [1, 2, 3, 4, 5, 6, 7];
-
-alert( arr.filter(inBetween(3, 6)) ); // 3,4,5,6
-
-alert( arr.filter(inArray([1, 2, 10])) ); // 1,2
-
+<p>let arr = [1, 2, 3, 4, 5, 6, 7];</p>
+<p></p>
+<p>alert( arr.filter(inBetween(3, 6)) ); // 3,4,5,6</p>
+<p></p>
+<p>alert( arr.filter(inArray([1, 2, 10])) ); // 1,2</p>
+</code>
 
 <hr>
 
 6
 
 
-Сортировать по полю
-важность: 5
+<h2><a href="https://learn.javascript.ru/closure#sortirovat-po-polyu">Сортировать по полю</a></h2>
 
-У нас есть массив объектов, который нужно отсортировать:
+<h3>Важность: 5</h3>
 
-let users = [
-  { name: "John", age: 20, surname: "Johnson" },
-  { name: "Pete", age: 18, surname: "Peterson" },
-  { name: "Ann", age: 19, surname: "Hathaway" }
-];
+<p>
+  У нас есть массив объектов, который нужно отсортировать:
+</p>
 
-Обычный способ был бы таким:
+<code>
+  <p>let users = [</p>
+    <p>{ name: "John", age: 20, surname: "Johnson" },</p>
+    <p>{ name: "Pete", age: 18, surname: "Peterson" },</p>
+    <p>{ name: "Ann", age: 19, surname: "Hathaway" },</p>
+  <p>];</p>
+</code>
 
-// по имени (Ann, John, Pete)
-users.sort((a, b) => a.name > b.name ? 1 : -1);
+<p>
+  Обычный способ был бы таким:
+</p>
 
-// по возрасту (Pete, Ann, John)
-users.sort((a, b) => a.age > b.age ? 1 : -1);
+<code>
+  <p>// по имени (Ann, John, Pete)</p>
+  <p>users.sort((a, b) => a.name > b.name ? 1 : -1);</p>
+  <p></p>
+  <p>// по возрасту (Pete, Ann, John)</p>
+  <p>users.sort((a, b) => a.age > b.age ? 1 : -1);</p>
+</code>
 
-Можем ли мы сделать его короче, например вот таким?
+<p>
+  Можем ли мы сделать его короче, например вот таким?
+</p>
 
-users.sort(byField('name'));
-users.sort(byField('age'));
+<code>
+  <p>users.sort(byField('name'));</p>
+  <p>users.sort(byField('age'));</p>
+</code>
 
-То есть чтобы вместо функции мы просто писали byField(fieldName).
+<p>
+  То есть чтобы вместо функции мы просто писали <code>byField(fieldName)</code>.
+</p>
 
-Напишите функцию byField, которая может быть использована для этого.
+<p>
+  Напишите функцию <code>byField</code>, которая может быть использована для этого.
+</p>
 
+<h3>Решение</h3>
+
+<code>
+  <p>function byField(field_name) {</p>
+    <p>const sorter = (el, otherEl) => {</p>
+      <p>return el[field_name] > otherEl[field_name] ? 1 : -1;</p>
+    <p>};</p>
+    <p>return sorter;</p>
+  <p>}</p>
+</code>
 
 <hr>
 
 7
 
+<h2><a href="https://learn.javascript.ru/closure#armiya-funktsiy">Армия функций</a></h2>
 
-рмия функций
-важность: 5
+<h3>Важность: 5</h3>
 
-Следующий код создаёт массив из стрелков (shooters).
+<h3>Условие</h3>
 
-Каждая функция предназначена выводить их порядковые номера. Но что-то пошло не так…
+<p>
+  Следующий код создаёт массив из стрелков (shooters).
+</p>
+<p>
+  Каждая функция предназначена выводить их порядковые номера. Но что-то пошло не так…
+</p>
 
-function makeArmy() {
-  let shooters = [];
+<code>
+  <p>function makeArmy() {</p>
+    <p>let shooters = [];</p>
+    <p></p>
+    <p>let i = 0;</p>
+    <p>while (i < 10) {</p>
+      <p>let shooter = function() { // функция shooter</p>
+        <p>alert(i); // должна выводить порядковый номер</p>
+     <p>};</p>
+      <p>shooters.push(shooter);</p>
+      <p>i++;</p>
+    <p>}</p>
+    <p></p>
+    return shooters;</p>
+  <p>}</p>
+  <p></p>
+  <p>let army = makeArmy();</p>
+  <p></p>
+  <p>army[0](); // у 0-го стрелка будет номер 10</p>
+  <p>army[5](); // и у 5-го стрелка тоже будет номер 10</p>
+  <p>// ... у всех стрелков будет номер 10, вместо 0, 1, 2, 3...</p>
+</code>
 
-  let i = 0;
-  while (i < 10) {
-    let shooter = function() { // функция shooter
-      alert( i ); // должна выводить порядковый номер
-    };
-    shooters.push(shooter);
-    i++;
-  }
+<p>
+  Почему у всех стрелков одинаковые номера? Почините код, чтобы он работал как задумано.
+</p>
 
-  return shooters;
-}
+<h3>Решение</h3>
 
-let army = makeArmy();
+<p>
+  Проблема в том, что значение i вычисляется во время ее вызова, i в этот момент равна последнему значению из цикла, то есть 10.
+</p>
 
-army[0](); // у 0-го стрелка будет номер 10
-army[5](); // и у 5-го стрелка тоже будет номер 10
-// ... у всех стрелков будет номер 10, вместо 0, 1, 2, 3...
+<p>
+  Пример исправление показан ниже(смотри комментарии).
+</p>
 
-Почему у всех стрелков одинаковые номера? Почините код, чтобы он работал как задумано.
+<code>
+  <p>function makeArmy() {</p>
+    <p>let shooters = [];</p>
+    <p></p>
+    <p>let i = 0;</p>
+    <p>while (i < 10) {</p>
+      <p>let shooter = function(i) { // для сохранения текущего значения i передаем ее в функцию как параметр</p>
+        <p>return () => console.log(i); // возвращаем стрелочную функцию</p>
+      <p>};</p>
+      <p>shooters.push(shooter(i));</p>
+      <p>i++;</p>
+    <p>}</p>
+    <p></p>
+    <p>return shooters;</p>
+  <p>}</p>
+  <p></p>
+  <p>let army = makeArmy();</p>
+  <p></p>
+  <p>army[0](); // у 0-го стрелка будет номер 0</p>
+  <p>army[5](); // и у 5-го стрелка тоже будет номер 5</p>
+  <p>// ... работает верно...</p>
+</code>
 
 </body>
 </html>
