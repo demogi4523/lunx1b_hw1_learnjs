@@ -8,43 +8,106 @@
 </head>
 <body>
 
+  <script src="./eigth.js"></script>
+
   1
 
-  Вывод каждую секунду
-важность: 5
+  <h2><a href="https://learn.javascript.ru/settimeout-setinterval#vyvod-kazhduyu-sekundu">Вывод каждую секунду</a></h2>
 
-Напишите функцию printNumbers(from, to), которая выводит число каждую секунду, начиная от from и заканчивая to.
+  <h3>Важность: 5</h3>
 
-Сделайте два варианта решения.
+  <p>
+    Напишите функцю <code>printNumbers(from, to)</code>, которая выводит число каждую секунду, начиная от <code>from</code> и заканчивая <code>to</code>.
+  </p>
 
-    Используя setInterval.
-    Используя рекурсивный setTimeout.
+  <p>
+    Сделайте два варианта решения.
+  </p>
+
+  <ol>
+    <li>Используя setInterval.</li>
+    <li>Используя рекурсивный setTimeout.</li>
+  </ol>
+
+  <h3>Решение</h3>
+
+  <p>
+
+  </p>
+
+  <code>
+    <p>function printNumber(from, to) {</p>
+      <p>let i = from;</p>
+      <p>const q = setInterval(() => {</p>
+        <p>console.log(i);</p>
+        <p>i += 1;</p>
+        <p>if (i > to) {</p>
+          <p>clearInterval(q);</p>
+        <p>}</p>
+      <p>}, 1000, i);</p>
+    <p>}</p>
+    <p></p>
+    <p>printNumber(2, 4);</p>
+    <p></p>
+    <p>function printNumberWithRecursion(from, to) {</p>
+      <p>let i = from;</p>
+      <p>let q;</p>
+      <p>const wrap = () => setTimeout(() => {</p>
+        <p>console.log(i);</p>
+        <p>i += 1;</p>
+        <p>if (i > to) {</p>
+          <p>clearTimeout(q);</p>
+        <p>} else {</p>
+          <p>wrap();</p>
+        <p>}</p>
+      <p>}, 1000, i);</p>
+      <p></p>
+      <p>q = wrap();</p>
+    <p>}</p>
+    <p></p>
+    <p>printNumberWithRecursion(5, 7);</p>
+  </code>
 
 <hr>
 
 2
 
-Что покажет setTimeout?
-важность: 5
+<h2><a href="https://learn.javascript.ru/settimeout-setinterval#chto-pokazhet-settimeout">Что покажет setTimeout?</a></h2>
 
-В приведённом ниже коде запланирован вызов setTimeout, а затем выполняется сложное вычисление, для завершения которого требуется более 100 мс.
+<h3>Важность: 5</h3>
 
-Когда будет выполнена запланированная функция?
+<p>
+  В приведённом ниже коде запланирован вызов <code>setTimeout</code>, а затем выполняется сложное вычисление, для завершения которого требуется более 100 мс.
+</p>
 
-    После цикла.
-    Перед циклом.
-    В начале цикла.
+<p>
+  Когда будет выполнена запланированная функция?
+</p>
 
-Что покажет alert?
+    <ol>
+      <li>После цикла.</li>
+      <li>Перед циклом.</li>
+      <li>В начале цикла.</li>
+    </ol>
 
-let i = 0;
+<p>
+  Что покажет <code>alert</code>?
+</p>
 
-setTimeout(() => alert(i), 100); // ?
+<code>
+  <p>let i = 0;</p>
+  <p></p>
+  <p>setTimeout(() => alert(i), 100); // ?</p>
+  <p></p>
+  <p>// предположим, что время выполнения этой функции >100 мс</p>
+  <p>for(let j = 0; j < 100000000; j++) {</p>
+    <p>i++;</p>
+  <p>}</p>
+</code>
 
-// предположим, что время выполнения этой функции >100 мс
-for(let j = 0; j < 100000000; j++) {
-  i++;
-}
+  <h3>Решение</h3>
+
+  <p>Alert выведет 100000000, так как сначала выполняется синхронный код.</p>
 
 </body>
 </html>

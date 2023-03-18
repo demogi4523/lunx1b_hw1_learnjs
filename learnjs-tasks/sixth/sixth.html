@@ -8,41 +8,112 @@
 </head>
 <body>
 
+  <script src="./sixth.js"></script>
 
   1
 
-  Установка и уменьшение значения счётчика
-важность: 5
+  <h2><a href="https://learn.javascript.ru/function-object#ustanovka-i-umenshenie-znacheniya-schyotchika">Установка и уменьшение значения счётчика</a></h2>
 
-Измените код makeCounter() так, чтобы счётчик мог уменьшать и устанавливать значение:
+  <h3>Важность: 5</h3>
 
-    counter() должен возвращать следующее значение (как и раньше).
-    counter.set(value) должен устанавливать счётчику значение value.
-    counter.decrease() должен уменьшать значение счётчика на 1.
+  <h3>Условие</h3>
+
+  <p>
+    Измените код <code>makeCounter()</code> так, чтобы счётчик мог уменьшать и устанавливать значение:
+  </p>
+
+    <ul>
+      <li><code>counter()</code> должен возвращать следующее значение (как и раньше).</li>
+      <li><code>counter.set(value)</code> должен устанавливать счётчику значение value.</li>
+      <li><code>counter.decrease()</code> должен уменьшать значение счётчика на 1.</li>
+    </ul>
 
 Посмотрите код из песочницы с полным примером использования.
 
 P.S. Для того, чтобы сохранить текущее значение счётчика, можно воспользоваться как замыканием, так и свойством функции. Или сделать два варианта решения: и так, и так.
+
+    <h3>Решение</h3>
+
+    <p>
+
+    </p>
+
+    <code>
+<p>function makeCounter() {</p>
+  <p></p>
+    <p>function counter() {</p>
+      <p>return counter.count++;</p>
+    <p>};</p>
+    <p></p>
+    <p>counter.count = 0;</p>
+    <p></p>
+    <p>counter.toString = () => counter.count;</p>
+    <p>counter.set = (newCountValue) => {</p>
+    <p>  counter.count = newCountValue;</p>
+    <p>};</p>
+    <p>counter.decrease = () => {</p>
+    <p>  counter.count--;</p>
+    <p>}</p>
+    <p></p>
+    <p>return counter;</p>
+  <p>}</p>
+  <p></p>
+  <p>const counter = makeCounter();</p>
+  <p>counter();</p>
+  <p>counter();</p>
+  <p>console.log(`counter: ${counter}`);</p>
+  <p>counter.set(6);</p>
+  <p>console.log(`counter: ${counter}`);</p>
+  <p>counter.decrease();</p>
+  <p>console.log(`counter: ${counter}</p>
+    </code>
 
 <hr>
 
 
 2
 
+<h2><a href="https://learn.javascript.ru/function-object#summa-s-proizvolnym-kolichestvom-skobok">Сумма с произвольным количеством скобок</a></h2>
 
-Сумма с произвольным количеством скобок
-важность: 2
+<h3>Важность: 2</h3>
 
-Напишите функцию sum, которая бы работала следующим образом:
+<h3>Условие</h3>
 
-sum(1)(2) == 3; // 1 + 2
-sum(1)(2)(3) == 6; // 1 + 2 + 3
-sum(5)(-1)(2) == 6
-sum(6)(-1)(-2)(-3) == 0
-sum(0)(1)(2)(3)(4)(5) == 15
+<p>
+  Напишите функцию <code>sum</code>, которая бы работала следующим образом:
+</p>
 
-P.S. Подсказка: возможно вам стоит сделать особый метод преобразования в примитив для функции.
+<code>
+  <p>sum(1)(2) == 3; // 1 + 2</p>
+  <p>sum(1)(2)(3) == 6; // 1 + 2 + 3</p>
+  <p>sum(5)(-1)(2) == 6</p>
+  <p>sum(6)(-1)(-2)(-3) == 0</p>
+  <p>sum(0)(1)(2)(3)(4)(5) == 15</p>
+</code>
 
+<p>
+  P.S. Подсказка: возможно вам стоит сделать особый метод преобразования в примитив для функции.
+</p>
+
+<h3>Решение</h3>
+
+<p>
+
+</p>
+
+<code>
+  <p>function sum(n) {</p>
+    <p>let cnt = n;</p>
+    <p></p>
+    <p>const wrap = (m) => {</p>
+      <p>cnt += m;</p>
+      <p>return wrap;</p>
+    <p>};</p>
+    <p></p>
+    <p>wrap.toString = () => cnt;</p>
+    <p></p>
+    <p>return wrap;</p>
+</code>
 
 </body>
 </html>
