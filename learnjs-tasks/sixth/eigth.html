@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  1
+
+  Вывод каждую секунду
+важность: 5
+
+Напишите функцию printNumbers(from, to), которая выводит число каждую секунду, начиная от from и заканчивая to.
+
+Сделайте два варианта решения.
+
+    Используя setInterval.
+    Используя рекурсивный setTimeout.
+
+<hr>
+
+2
+
+Что покажет setTimeout?
+важность: 5
+
+В приведённом ниже коде запланирован вызов setTimeout, а затем выполняется сложное вычисление, для завершения которого требуется более 100 мс.
+
+Когда будет выполнена запланированная функция?
+
+    После цикла.
+    Перед циклом.
+    В начале цикла.
+
+Что покажет alert?
+
+let i = 0;
+
+setTimeout(() => alert(i), 100); // ?
+
+// предположим, что время выполнения этой функции >100 мс
+for(let j = 0; j < 100000000; j++) {
+  i++;
+}
+
+</body>
+</html>

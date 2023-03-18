@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вывод односвязного списка в обратном порядке</title>
+</head>
+<body>
+
+1
+
+Можно ли "перевыполнить" промис?
+
+Что выведет код ниже?
+
+let promise = new Promise(function(resolve, reject) {
+  resolve(1);
+
+  setTimeout(() => resolve(2), 1000);
+});
+
+promise.then(alert);
+
+<hr>
+
+2
+
+Задержка на промисах
+
+Встроенная функция setTimeout использует колбэк-функции. Создайте альтернативу, использующую промисы.
+
+Функция delay(ms) должна возвращать промис, который перейдёт в состояние «выполнен» через ms миллисекунд, так чтобы мы могли добавить к нему .then:
+
+function delay(ms) {
+  // ваш код
+}
+
+delay(3000).then(() => alert('выполнилось через 3
+
+<hr>
+
+3
+
+Анимация круга с помощью промиса
+
+Перепишите функцию showCircle, написанную в задании Анимация круга с помощью колбэка таким образом, чтобы она возвращала промис, вместо того чтобы принимать в аргументы функцию-callback.
+
+Новое использование:
+
+showCircle(150, 150, 100).then(div => {
+  div.classList.add('message-ball');
+  div.append("Hello, world!");
+});
+
+Возьмите решение из Анимация круга с помощью колбэка в качестве основы.
+
+</body>
+</html>

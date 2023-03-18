@@ -6,10 +6,10 @@ function ask(question) {
   return new Promise(function (resolve, reject) {
     process.stdin.once('data', function (data) {
       const ans = data.toString().trim();
-      if (and == 'Yes') {
+      if (ans == 'Yes') {
         resolve(ans);
       } else {
-        fail();
+        reject(ans);
       }
     });
   });
@@ -23,7 +23,9 @@ describe("A suite", function() {
 
 describe("A suite", function() {
   it("contains spec with an expectation", async function() {
-    return await ask('test');
+    return await ask()
+      .then(data => console.log(data))
+      .catch(data => console.error(data));
   });
 });
 

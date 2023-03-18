@@ -7,95 +7,193 @@
   <title>Числа Фибоначчи</title>
 </head>
 <body>
-  <a href="https://learn.javascript.ru/recursion#chisla-fibonachchi">Задача #3</a>
+  1
 
-  <script>
-    "use strict";
+  Независимы ли счётчики?
+важность: 5
 
-    const cache = {
-      1: 1,
-      2: 1,
+Здесь мы делаем два счётчика: counter и counter2, используя одну и ту же функцию makeCounter.
+
+Они независимы? Что покажет второй счётчик? 0,1 или 2,3 или что-то ещё?
+
+function makeCounter() {
+  let count = 0;
+
+  return function() {
+    return count++;
+  };
+}
+
+let counter = makeCounter();
+let counter2 = makeCounter();
+
+alert( counter() ); // 0
+alert( counter() ); // 1
+
+alert( counter2() ); // ?
+alert( counter2() ); // ?
+
+<hr>
+2
+
+Объект счётчика
+важность: 5
+
+Здесь объект счётчика создан с помощью функции-конструктора.
+
+Будет ли он работать? Что покажет?
+
+function Counter() {
+  let count = 0;
+
+  this.up = function() {
+    return ++count;
+  };
+  this.down = function() {
+    return --count;
+  };
+}
+
+let counter = new Counter();
+
+alert( counter.up() ); // ?
+alert( counter.up() ); // ?
+alert( counter.down() ); // ?
+
+
+<hr>
+
+3
+
+Функция в if
+
+Посмотрите на код. Какой будет результат у вызова на последней строке?
+
+let phrase = "Hello";
+
+if (true) {
+  let user = "John";
+
+  function sayHi() {
+    alert(`${phrase}, ${user}`);
+  }
+}
+
+sayHi();
+
+<hr>
+
+4
+
+Сумма с помощью замыканий
+важность: 4
+
+Напишите функцию sum, которая работает таким образом: sum(a)(b) = a+b.
+
+Да, именно таким образом, используя двойные круглые скобки (не опечатка).
+
+Например:
+
+sum(1)(2) = 3
+sum(5)(-1) = 4
+
+<hr>
+
+5
+
+Фильтрация с помощью функции
+важность: 5
+
+У нас есть встроенный метод arr.filter(f) для массивов. Он фильтрует все элементы с помощью функции f. Если она возвращает true, то элемент добавится в возвращаемый массив.
+
+Сделайте набор «готовых к употреблению» фильтров:
+
+    inBetween(a, b) – между a и b (включительно).
+    inArray([...]) – находится в данном массиве.
+
+Они должны использоваться таким образом:
+
+    arr.filter(inBetween(3,6)) – выбирает только значения между 3 и 6 (включительно).
+    arr.filter(inArray([1,2,3])) – выбирает только элементы, совпадающие с одним из элементов массива
+
+Например:
+
+/* .. ваш код для inBetween и inArray */
+let arr = [1, 2, 3, 4, 5, 6, 7];
+
+alert( arr.filter(inBetween(3, 6)) ); // 3,4,5,6
+
+alert( arr.filter(inArray([1, 2, 10])) ); // 1,2
+
+
+<hr>
+
+6
+
+
+Сортировать по полю
+важность: 5
+
+У нас есть массив объектов, который нужно отсортировать:
+
+let users = [
+  { name: "John", age: 20, surname: "Johnson" },
+  { name: "Pete", age: 18, surname: "Peterson" },
+  { name: "Ann", age: 19, surname: "Hathaway" }
+];
+
+Обычный способ был бы таким:
+
+// по имени (Ann, John, Pete)
+users.sort((a, b) => a.name > b.name ? 1 : -1);
+
+// по возрасту (Pete, Ann, John)
+users.sort((a, b) => a.age > b.age ? 1 : -1);
+
+Можем ли мы сделать его короче, например вот таким?
+
+users.sort(byField('name'));
+users.sort(byField('age'));
+
+То есть чтобы вместо функции мы просто писали byField(fieldName).
+
+Напишите функцию byField, которая может быть использована для этого.
+
+
+<hr>
+
+7
+
+
+рмия функций
+важность: 5
+
+Следующий код создаёт массив из стрелков (shooters).
+
+Каждая функция предназначена выводить их порядковые номера. Но что-то пошло не так…
+
+function makeArmy() {
+  let shooters = [];
+
+  let i = 0;
+  while (i < 10) {
+    let shooter = function() { // функция shooter
+      alert( i ); // должна выводить порядковый номер
     };
+    shooters.push(shooter);
+    i++;
+  }
 
-    const fib = (n) => {
-      if (isNaN(n) || typeof n !== "number") {
-        throw new Error("n must be integer more or equal 1!!!");
-      }
-      if (n < 0) {
-        throw new Error("n must be integer more or equal 1!!!");
-      }
-      if (cache.hasOwnProperty(n)) {
-        return cache[n];
-      }
-      const res = fib(n - 1) + fib(n - 2);
-      cache[n] = res;
-      return res;
-    }
+  return shooters;
+}
 
-    console.log(`fib(77)) = ${fib(77)}`);
+let army = makeArmy();
 
-  </script>
+army[0](); // у 0-го стрелка будет номер 10
+army[5](); // и у 5-го стрелка тоже будет номер 10
+// ... у всех стрелков будет номер 10, вместо 0, 1, 2, 3...
 
-<p>
-  Последовательность <a href="https://ru.wikipedia.org/wiki/%D0%A7%D0%B8%D1%81%D0%BB%D0%B0_%D0%A4%D0%B8%D0%B1%D0%BE%D0%BD%D0%B0%D1%87%D1%87%D0%B8">чисел Фибоначчи</a> определяется формулой Fn = Fn-1 + Fn-2. То есть, следующее число получается как сумма двух предыдущих.
-</p>
-
-<p>
-  Первые два числа равны 1, затем 2 = (1 + 1), затем 3 = (1 + 2), 5 = (2 + 3) и так далее: 1, 1, 2, 3, 5, 8, 13, 21....
-</p>
-
-<p>
-  Числа Фибоначчи тесно связаны с <a href="https://ru.wikipedia.org/wiki/%D0%97%D0%BE%D0%BB%D0%BE%D1%82%D0%BE%D0%B5_%D1%81%D0%B5%D1%87%D0%B5%D0%BD%D0%B8%D0%B5">золотым сечением</a> и множеством природных явлений вокруг нас.
-</p>
-
-<p>
-  Напишите функцию fib(n) которая возвращает n-е число Фибоначчи.
-</p>
-
-<p>
-  Пример работы:
-</p>
-
-<code>
-  <p>function fib(n) { /* ваш код */ }</p>
-  <p></p>
-  <p>alert(fib(3)); // 2</p>
-  <p>alert(fib(7)); // 13</p>
-  <p>alert(fib(77)); // 5527939700884757</p>
-</code>
-
-
-<p>
-  P.S. Все запуски функций из примера выше должны работать быстро. Вызов fib(77) должен занимать не более доли секунды.
-</p>
-
-  <h2>Решение</h2>
-
-  <code>
-    <p>const cache = {</p>
-      <p>1: 1,</p>
-      <p>2: 1,</p>
-    <p>};</p>
-
-    <p>const fib = (n) => {</p>
-      <p>if (isNaN(n) || typeof n !== "number") {</p>
-        <p>throw new Error("n must be integer more or equal 1!!!");</p>
-      <p>}</p>
-      <p>if (n < 0) {</p>
-        <p>throw new Error("n must be integer more or equal 1!!!");</p>
-      <p>}</p>
-      <p>if (cache.hasOwnProperty(n)) {</p>
-        <p>return cache[n];</p>
-      <p>}</p>
-      <p>const res = fib(n - 1) + fib(n - 2);</p>
-      <p>cache[n] = res;</p>
-      <p>return res;</p>
-    <p>}</p>
-  </code>
-
-  <p>Результат вычислений можно увидеть в консоли разработчика.</p>
-
-  <p>P.S. смотри <a href="https://learn.javascript.ru/devtools">консоль разработчика</a></p>
+Почему у всех стрелков одинаковые номера? Почините код, чтобы он работал как задумано.
 
 </body>
 </html>

@@ -157,5 +157,430 @@
   <cite>https://learn.javascript.ru/recursion</cite>
 
   <!-- <p>P.S. смотри <a href="https://learn.javascript.ru/devtools">консоль разработчика</a></p> -->
+
+
+  <hr>
+
+
+ <a href="https://learn.javascript.ru/while-for#kakie-znacheniya-vyvedet-tsikl-while">Задача #2</a>
+
+  <script>
+    "use strict";
+
+    let i = 0;
+    while (++i < 5) console.log(i);
+
+    i = 0;
+    while (i++ < 5) console.log(i);
+  </script>
+
+<h2>Для каждого цикла запишите, какие значения он выведет. Потом сравните с ответом.<br>
+
+  Оба цикла выводят alert с одинаковыми значениями или нет?</h2>
+
+<h3>Префиксный вариант ++i:</h3>
+
+  <code>
+    <p>let i = 0;</p>
+    <p>// Выведет числа от 1 до 4, так как сначала увеличивает значение, а затем происходит сравнение</p>
+    <p>while (++i < 5) alert( i );</p>
+  </code>
+
+  <hr>
+
+<h3>Постфиксный вариант i++:</h3>
+
+  <code>
+    <p>let i = 0;</p>
+    <p>// Выведет числа от 1 до 5, так как увеличение происходит после сравнения</p>
+    <p>while (i++ < 5) alert( i );</p>
+  </code>
+
+
+  <p>P.S. смотри <a href="https://learn.javascript.ru/devtools">консоль разработчика</a></p>
+
+
+  <hr>
+
+
+  <a href="https://learn.javascript.ru/recursion#vychislit-faktorial">Задача #2</a>
+
+  <script>
+    "use strict";
+    const factorial = (n) => {
+      if (isNaN(n) || typeof n !== "number") {
+        throw new Error("n must be integer more or equal 1!!!");
+      }
+      if (n < 0) {
+        throw new Error("n must be integer more or equal 1!!!");
+      }
+      if (n == 1) {
+        return 1;
+      }
+      return n * factorial(n - 1);
+    }
+    console.log(factorial(5));
+  </script>
+
+<h2>Вычислить факториал</h2>
+
+<p>
+  Факториал натурального числа – это число, умноженное на "себя минус один", затем на "себя минус два", и так далее до 1. Факториал n обозначается как n!
+</p>
+
+<p>
+  Определение факториала можно записать как:
+</p>
+
+<code>
+  n! = n * (n - 1) * (n - 2) * ...*1
+</code>
+
+<p>
+  Примеры значений для разных n:
+</p>
+
+<code>
+  1! = 1
+  2! = 2 * 1 = 2
+  3! = 3 * 2 * 1 = 6
+  4! = 4 * 3 * 2 * 1 = 24
+  5! = 5 * 4 * 3 * 2 * 1 = 120
+</code>
+
+<p>
+  Задача – написать функцию factorial(n), которая возвращает n!, используя рекурсию.
+</p>
+
+<code>
+  alert( factorial(5) ); // 120
+</code>
+
+<p>
+  P.S. Подсказка: n! можно записать как n * (n-1)! Например: 3! = 3*2! = 3*2*1! = 6
+</p>
+
+  <h2>Решение</h2>
+
+  <code>
+    <p>const factorial = (n) => {</p>
+      <p>if (isNaN(n) || typeof n !== "number") {</p>
+        <p>throw new Error("n must be integer more or equal 1!!!");</p>
+      <p>}</p>
+      <p>if (n < 0) {</p>
+        <p>throw new Error("n must be integer more or equal 1!!!");</p>
+      <p>}</p>
+      <p>if (n == 1) {</p>
+        <p>return 1;</p>
+      <p>}</p>
+      <p>return n * factorial(n - 1);</p>
+    <p>}</p>
+  </code>
+
+  <p>Результат можно увидеть в консоли разработчика.</p>
+
+  <p>P.S. смотри <a href="https://learn.javascript.ru/devtools">консоль разработчика</a></p>
+
+
+  <hr>
+
+
+  <a href="https://learn.javascript.ru/recursion#chisla-fibonachchi">Задача #3</a>
+
+  <script>
+    "use strict";
+
+    const cache = {
+      1: 1,
+      2: 1,
+    };
+
+    const fib = (n) => {
+      if (isNaN(n) || typeof n !== "number") {
+        throw new Error("n must be integer more or equal 1!!!");
+      }
+      if (n < 0) {
+        throw new Error("n must be integer more or equal 1!!!");
+      }
+      if (cache.hasOwnProperty(n)) {
+        return cache[n];
+      }
+      const res = fib(n - 1) + fib(n - 2);
+      cache[n] = res;
+      return res;
+    }
+
+    console.log(`fib(77)) = ${fib(77)}`);
+
+  </script>
+
+<p>
+  Последовательность <a href="https://ru.wikipedia.org/wiki/%D0%A7%D0%B8%D1%81%D0%BB%D0%B0_%D0%A4%D0%B8%D0%B1%D0%BE%D0%BD%D0%B0%D1%87%D1%87%D0%B8">чисел Фибоначчи</a> определяется формулой Fn = Fn-1 + Fn-2. То есть, следующее число получается как сумма двух предыдущих.
+</p>
+
+<p>
+  Первые два числа равны 1, затем 2 = (1 + 1), затем 3 = (1 + 2), 5 = (2 + 3) и так далее: 1, 1, 2, 3, 5, 8, 13, 21....
+</p>
+
+<p>
+  Числа Фибоначчи тесно связаны с <a href="https://ru.wikipedia.org/wiki/%D0%97%D0%BE%D0%BB%D0%BE%D1%82%D0%BE%D0%B5_%D1%81%D0%B5%D1%87%D0%B5%D0%BD%D0%B8%D0%B5">золотым сечением</a> и множеством природных явлений вокруг нас.
+</p>
+
+<p>
+  Напишите функцию fib(n) которая возвращает n-е число Фибоначчи.
+</p>
+
+<p>
+  Пример работы:
+</p>
+
+<code>
+  <p>function fib(n) { /* ваш код */ }</p>
+  <p></p>
+  <p>alert(fib(3)); // 2</p>
+  <p>alert(fib(7)); // 13</p>
+  <p>alert(fib(77)); // 5527939700884757</p>
+</code>
+
+
+<p>
+  P.S. Все запуски функций из примера выше должны работать быстро. Вызов fib(77) должен занимать не более доли секунды.
+</p>
+
+  <h2>Решение</h2>
+
+  <code>
+    <p>const cache = {</p>
+      <p>1: 1,</p>
+      <p>2: 1,</p>
+    <p>};</p>
+
+    <p>const fib = (n) => {</p>
+      <p>if (isNaN(n) || typeof n !== "number") {</p>
+        <p>throw new Error("n must be integer more or equal 1!!!");</p>
+      <p>}</p>
+      <p>if (n < 0) {</p>
+        <p>throw new Error("n must be integer more or equal 1!!!");</p>
+      <p>}</p>
+      <p>if (cache.hasOwnProperty(n)) {</p>
+        <p>return cache[n];</p>
+      <p>}</p>
+      <p>const res = fib(n - 1) + fib(n - 2);</p>
+      <p>cache[n] = res;</p>
+      <p>return res;</p>
+    <p>}</p>
+  </code>
+
+  <p>Результат вычислений можно увидеть в консоли разработчика.</p>
+
+  <p>P.S. смотри <a href="https://learn.javascript.ru/devtools">консоль разработчика</a></p>
+
+
+  <hr>
+
+  <a href="https://learn.javascript.ru/recursion#vyvod-odnosvyaznogo-spiska">Задача #4</a>
+
+  <script>
+    "use strict";
+
+    let list = {
+      value: 1,
+      next: {
+        value: 2,
+        next: {
+          value: 3,
+          next: {
+            value: 4,
+            next: null,
+          }
+        }
+      }
+    };
+
+    const printListOverCycle = (singleLinkedList) => {
+      let cur = singleLinkedList;
+      const res = [];
+
+      while (cur !== null) {
+        res.push(cur.value);
+        cur = cur.next;
+      }
+
+      return res.join(', ');
+    };
+
+    const printListOverRecursion = (singleLinkedList, prev = []) => {
+      if (singleLinkedList === null) {
+        return prev.join(', ');
+      }
+
+      prev.push(singleLinkedList.value);
+      return printListOverRecursion(singleLinkedList.next, prev);
+    };
+
+    console.log(`Односвязный список через цикл:\n${printListOverCycle(list)}`);
+    console.log(`Односвязный список через рекурсию:\n${printListOverRecursion(list)}`);
+  </script>
+
+<h2>Вывод односвязного списка</h2>
+
+<p>
+  Допустим, у нас есть односвязный список (как описано в главе <a href="https://learn.javascript.ru/recursion">Рекурсия и стек</a>):
+</p>
+
+<code>
+  <p>let list = {</p>
+    <p>value: 1,</p>
+    <p>next: {</p>
+      <p>value: 2,</p>
+      <p>next: {</p>
+        <p>value: 3,</p>
+        <p>next: {</p>
+          <p>value: 4,</p>
+          <p>next: null</p>
+        <p>}</p>
+      <p>}</p>
+    <p>}</p>
+  <p>};</p>
+</code>
+
+<p>
+  Напишите функцию printList(list), которая выводит элементы списка по одному.
+</p>
+
+<p>
+  Сделайте два варианта решения: используя цикл и через рекурсию.
+</p>
+
+<p>
+  Как лучше: с рекурсией или без?
+</p>
+
+  <h2>Решение</h2>
+
+  <h3>Вариант решения через цикл:</h3>
+  <code>
+    <p>const printList = (singleLinkedList) => {</p>
+      <p>let cur = singleLinkedList;</p>
+      <p>const res = [];</p>
+      <p></p>
+      <p>while (cur !== null) {</p>
+        <p>res.push(cur.value);</p>
+        <p>cur = cur.next;</p>
+      <p>}</p>
+      <p></p>
+      <p>return res.join(', ');</p>
+    <p>};</p>
+  </code>
+
+  <h3>Вариант решения через рекурсию:</h3>
+  <code>
+    <p>const printList = (singleLinkedList, prev = []) => {</p>
+      <p>if (singleLinkedList === null) {</p>
+        <p>return prev.join(', ');</p>
+      <p>}</p>
+      <p></p>
+      <p>prev.push(singleLinkedList.value);</p>
+      <p>return printList(singleLinkedList.next, prev);</p>
+    <p>};</p>
+  </code>
+
+  <p>Результат вычислений можно увидеть в консоли разработчика.</p>
+
+  <p>P.S. смотри <a href="https://learn.javascript.ru/devtools">консоль разработчика</a></p>
+
+
+  <hr>
+
+
+  <a href="https://learn.javascript.ru/recursion#vyvod-odnosvyaznogo-spiska-v-obratnom-poryadke">Задача #5</a>
+
+  <script>
+    "use strict";
+
+    let list = {
+      value: 1,
+      next: {
+        value: 2,
+        next: {
+          value: 3,
+          next: {
+            value: 4,
+            next: null,
+          }
+        }
+      }
+    };
+
+    const printReversedListOverCycle = (singleLinkedList) => {
+      let cur = singleLinkedList;
+      const res = [];
+
+      while (cur !== null) {
+        res.push(cur.value);
+        cur = cur.next;
+      }
+
+      return res.reverse().join(', ');
+    };
+
+    const printReversedListOverRecursion = (singleLinkedList, prev = []) => {
+      if (singleLinkedList === null) {
+        return prev.reverse().join(', ');
+      }
+
+      prev.push(singleLinkedList.value);
+      return printReversedListOverRecursion(singleLinkedList.next, prev);
+    };
+
+    console.log(`Односвязный список в обратном порядке через цикл:\n${printReversedListOverCycle(list)}`);
+    console.log(`Односвязный список в обратном порядке через рекурсию:\n${printReversedListOverRecursion(list)}`);
+
+  </script>
+
+<h2>Вывод односвязного списка в обратном порядке</h2>
+
+<p>
+  Выведите односвязный список из предыдущего задания Вывод односвязного списка в обратном порядке.
+</p>
+
+<p>
+  Сделайте два решения: с использованием цикла и через рекурсию.
+</p>
+
+
+  <h2>Решение</h2>
+
+  <h3>Вариант решения через цикл:</h3>
+  <code>
+    <p>const printReversedList = (singleLinkedList) => {</p>
+      <p>let cur = singleLinkedList;</p>
+      <p>const res = [];</p>
+      <p></p>
+      <p>while (cur !== null) {</p>
+        <p>res.push(cur.value);</p>
+        <p>cur = cur.next;</p>
+      <p>}</p>
+      <p></p>
+      <p>return res.reverse().join(', ');</p>
+    <p>};</p>
+  </code>
+
+  <h3>Вариант решения через рекурсию:</h3>
+  <code>
+    <p>const printReversedList = (singleLinkedList, prev = []) => {</p>
+      <p>if (singleLinkedList === null) {</p>
+        <p>return prev.reverse().join(', ');</p>
+      <p>}</p>
+      <p></p>
+      <p>prev.push(singleLinkedList.value);</p>
+      <p>return printReversedList(singleLinkedList.next, prev);</p>
+    <p>};</p>
+  </code>
+
+  <p>Результат вычислений можно увидеть в консоли разработчика.</p>
+
+  <p>P.S. смотри <a href="https://learn.javascript.ru/devtools">консоль разработчика</a></p>
+
 </body>
 </html>
